@@ -33,7 +33,7 @@ function App() {
         <article className="space-y-6">
           <p>
             Soy un desarrollador orientado a la 
-            <span className="underlined-text"> creación de aplicaciones web modernas</span>, 
+            <span className="underlined-text"> creación de aplicaciones web</span>, 
             con un interés por la 
             <span className="underlined-text"> inteligencia artificial</span>. 
             Me motiva explorar cómo la IA puede integrarse en proyectos reales para 
@@ -55,7 +55,7 @@ function App() {
             <span className="underlined-text"> aprendizaje continuo</span>. 
             Creo que la 
             <span className="underlined-text"> inteligencia artificial </span> 
-            es una herramienta poderosa para 
+            es una herramienta para 
             <span className="underlined-text"> mejorar la vida de las personas </span> 
             y abrir nuevas oportunidades en el desarrollo tecnológico.
           </p>
