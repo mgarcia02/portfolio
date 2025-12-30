@@ -18,7 +18,7 @@ export const projects: Project[] = [
         title: 'Real time chat',
         technologies: ['Socket.io', 'React', 'NodeJS', ],
         description:
-        'Acortador de enlaces con alias personalizados. Incluye gestión de URLs tanto en modo demo como con autenticación y persistencia en backend.',
+        'Chat en tiempo real con gestión de conversaciones y contactos, autenticación y persistencia en backend.',
         codeUrl: 'https://github.com/mgarcia02/chat-tiempo-real',
         previewUrl: '#',
         image: realTimeChatImg,
