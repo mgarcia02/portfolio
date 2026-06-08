@@ -1,0 +1,7 @@
+.section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 7rem 3rem;
+    transition: background 0.4s;
+}

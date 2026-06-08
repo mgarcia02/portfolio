@@ -1,0 +1,31 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg:               #0a0a0b;
+    --surface:          #111113;
+    --surface2:         #18181c;
+    --border:           rgba(255, 255, 255, 0.07);
+    --accent:           #c8f135;
+    --accent-rgb:       200, 241, 53;
+    --text:             #e8e8ea;
+    --muted:            #6b6b72;
+    --logo:              #ffffff;
+    --btn-text:         #0a0a0b;
+    --nav-bg:           rgba(10, 10, 11, 0.75);
+}
+
+html  { scroll-behavior: smooth; }
+
+body {
+    background: var(--bg);
+    color:      var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size:  16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar              { width: 4px; }
+::-webkit-scrollbar-track        { background: var(--bg); }
+::-webkit-scrollbar-thumb        { background: var(--muted2); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover  { background: var(--accent); }

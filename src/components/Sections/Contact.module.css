@@ -1,0 +1,12 @@
+.wrapper {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    transition: background 0.4s;
+}
+
+.section {
+    padding: 7rem 3rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}

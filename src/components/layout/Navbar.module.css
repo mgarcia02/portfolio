@@ -1,0 +1,91 @@
+.nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    backdrop-filter: blur(14px);
+    background: var(--nav-bg);
+    border-bottom: 1px solid transparent;
+    transition: padding 0.3s ease, border-color 0.3s ease, background 0.4s;
+}
+
+.nav.scrolled {
+    padding: 0.9rem 3rem;
+    border-bottom-color: var(--border);
+}
+
+.logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--logo);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.dot { color: var(--accent); }
+
+.links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.link:hover { color: var(--accent); }
+.link:hover::after { width: 100%; }
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contactBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--accent);
+    color: var(--btn-text);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 0.6rem 1.2rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.contactBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.25);
+}
+
+@media (max-width: 900px) {
+    .nav { padding: 1rem 1.5rem; }
+    .nav.scrolled { padding: 0.8rem 1.5rem; }
+    .links { display: none; }
+}

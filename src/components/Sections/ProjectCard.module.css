@@ -1,0 +1,8 @@
+.card {
+    background: var(--surface);
+    padding: 2.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+}
