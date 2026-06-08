@@ -1,8 +1,21 @@
-import type { Project, SkillCategory, SocialLink } from '@/types'
+import type { Project, SkillCategory, SocialLink, TechMarquee } from '@/types'
 
 import LinkedInIcon from '@/assets/icons/linkedin.svg?react'
 import GitHubIcon from '@/assets/icons/github.svg?react'
 import EmailIcon from '@/assets/icons/email.svg?react'
+import ReactIcon from '@/assets/icons/react.svg?react'
+import TypeScriptIcon from '@/assets/icons/typescript.svg?react'
+import VueIcon from '@/assets/icons/vue.svg?react'
+import HTMLIcon from '@/assets/icons/html5.svg?react'
+import CSSIcon from '@/assets/icons/css.svg?react'
+import PythonIcon from '@/assets/icons/python.svg?react'
+import MySQLIcon from '@/assets/icons/mysql.svg?react'
+import NodeIcon from '@/assets/icons/nodejs.svg?react'
+import MongoIcon from '@/assets/icons/mongodb.svg?react'
+import SpringIcon from '@/assets/icons/springboot.svg?react'
+import GitIcon from '@/assets/icons/git.svg?react'
+import DockerIcon from '@/assets/icons/docker.svg?react'
+import VSCodeIcon from '@/assets/icons/vscode.svg?react'
 
 export const NAV_LINKS = [
     { href: '#about',    label: '01 / about' },
@@ -95,11 +108,20 @@ export const SOCIAL_LINKS: SocialLink[] = [
     },
 ]
 
-export const TECH_MARQUEE = [
-    'React', 'TypeScript', 'FastAPI', 'Python',
-    'Gemini API', 'TailwindCSS', 'MongoDB',
-    'Docker', 'MySQL', 'Git & GitHub', 'RAG Pattern',
-    'Java', 'Node.js', 'Spring Boot',
+export const TECH_MARQUEE: TechMarquee[] = [
+    { label: 'React', icon: ReactIcon },
+    { label: 'TypeScript', icon: TypeScriptIcon },
+    { label: 'MySQL', icon: MySQLIcon },
+    { label: 'Node.js', icon: NodeIcon },
+    { label: 'CSS', icon: CSSIcon },
+    { label: 'Python', icon: PythonIcon },
+    { label: 'MongoDB', icon: MongoIcon },
+    { label: 'Spring Boot', icon: SpringIcon },
+    { label: 'Git', icon: GitIcon },
+    { label: 'Docker', icon: DockerIcon },
+    { label: 'Vue', icon: VueIcon },
+    { label: 'HTML', icon: HTMLIcon },
+    { label: 'VS Code', icon: VSCodeIcon },
 ]
 
 export const STATS = [

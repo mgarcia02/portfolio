@@ -25,3 +25,8 @@ export interface SocialLink {
     href: string
     icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
 }
+
+export interface TechMarquee {
+    label: string
+    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
+}
