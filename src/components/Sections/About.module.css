@@ -17,8 +17,6 @@
 /* Section label + title */
 .sectionLabel {
     font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--accent);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     display: flex;

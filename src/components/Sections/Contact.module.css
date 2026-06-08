@@ -1,12 +1,96 @@
 .wrapper {
     background: var(--surface);
     border-top: 1px solid var(--border);
-    transition: background 0.4s;
 }
-
 .section {
     padding: 7rem 3rem;
     max-width: 700px;
     margin: 0 auto;
     text-align: center;
+}
+
+/* Section label + title */
+.sectionLabel {
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    color: var(--muted);
+    line-height: 1.85;
+    margin-bottom: 1.1rem;
+    font-size: 1rem;
+}
+.sectionLabel::before {
+    content: '';
+    width: 1.5rem;
+    height: 1px;
+    background: var(--accent);
+}
+.title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+.outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--accent);
+}
+
+/* Text */
+.sub {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+}
+
+/* Links */
+.contact {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    padding: 0.9rem 1.75rem;
+    border-radius: 2px;
+    text-decoration: none;
+    font-weight: 500;
+}
+.btnPrimary {
+    background: var(--accent);
+    color: var(--btn-text);
+    transition: all 0.25s ease;
+}
+.btnPrimary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.25);
+}
+.btnGhost {
+    color: var(--text);
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    transition: all 0.25s ease;
+}
+.btnGhost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+    .section { padding: 5rem 1.5rem; }
 }
