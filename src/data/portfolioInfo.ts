@@ -125,7 +125,7 @@ export const TECH_MARQUEE: TechMarquee[] = [
 ]
 
 export const STATS = [
-    { prefix: '', value: '2', suffix: '+', label: 'Proyectos' },
+    { prefix: '', value: '2', suffix: '+', label: 'Proyectos IA' },
     { prefix: '#', value: '1', suffix: '', label: 'Stack: React + FastAPI' },
     { prefix: '', value: '∞', suffix: '', label: 'Líneas de código' },
     { prefix: '', value: '100', suffix: '%', label: 'Open source' },

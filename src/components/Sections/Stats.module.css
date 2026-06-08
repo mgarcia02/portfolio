@@ -5,3 +5,37 @@
     padding: 4rem 3rem;
     transition: background 0.4s;
 }
+
+.stats {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+}
+
+.num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.accent { color: var(--accent); }
+
+.label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .band { padding: 3rem 1.5rem; }
+}

@@ -4,13 +4,13 @@ import styles from './Stats.module.css'
 export function Stats() {
     return (
         <div className={styles.band}>
-            <div>
+            <div className={styles.stats}>
                 {STATS.map(({ prefix, value, suffix, label }) => (
                     <div key={label}>
-                        <div>
-                            <span>{prefix}</span>{value}<span>{suffix}</span>
+                        <div className={styles.num}>
+                            <span className={styles.accent}>{prefix}</span>{value}<span className={styles.accent}>{suffix}</span>
                         </div>
-                        <div>{label}</div>
+                        <div className={styles.label}>{label}</div>
                     </div>
                 ))}
             </div>
