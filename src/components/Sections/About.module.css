@@ -5,3 +5,115 @@
     padding: 7rem 3rem;
     transition: background 0.4s;
 }
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Section label + title */
+.sectionLabel {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+.sectionLabel::before {
+    content: '';
+    width: 1.5rem; height: 1px;
+    background: var(--accent);
+}
+.sectionTitle {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+    font-weight: 800;
+    font-style:unset;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+.accentWord { color: var(--accent); font-style: normal; }
+
+/* Bio text */
+.text p {
+    color: var(--muted);
+    line-height: 1.85;
+    margin-bottom: 1.1rem;
+    font-size: 1rem;
+}
+.text p strong { color: var(--text); font-weight: 500; }
+
+/* Social links */
+.links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+.linkChip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.73rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.linkChip:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Skills */
+.skillsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+.skillCard {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.25s, background 0.4s;
+}
+.skillCard:hover { border-color: rgba(var(--accent-rgb), 0.25); }
+.skillLabel {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+.skillTags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.skillTag {
+    background: var(--skill-tag-bg);
+    border: 1px solid var(--muted2);
+    border-radius: 4px;
+    padding: 0.25rem 0.6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    transition: all 0.2s;
+}
+.skillTag:hover {
+    background: rgba(var(--accent-rgb), 0.08);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+@media (max-width: 900px) {
+    .section { padding: 5rem 1.5rem; }
+    .grid { grid-template-columns: 1fr; gap: 3rem; }
+    .skillsGrid { grid-template-columns: 1fr; }
+}

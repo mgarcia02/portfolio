@@ -22,7 +22,7 @@
     font-weight: 800;
     font-size: 1.1rem;
     letter-spacing: -0.02em;
-    color: var(--logo);
+    color: var(--ink);
     text-decoration: none;
     transition: color 0.2s;
 }

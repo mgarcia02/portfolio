@@ -4,12 +4,12 @@ import styles from './About.module.css'
 export function About() {
     return (
         <section id="about" className={styles.section}>
-            <div>
-                <div>
-                    <p>01 / Sobre mí</p>
-                    <h2>
+            <div className={styles.grid}>
+                <div className={styles.text}>
+                    <p className={styles.sectionLabel}>01 / Sobre mí</p>
+                    <h2 className={styles.sectionTitle}>
                         Donde el<br />
-                        código <em>piensa</em>.
+                        código <em className={styles.accentWord}>piensa</em>.
                     </h2>
                     <p>
                         Soy desarrollador <strong>Full Stack</strong> con background en IA, apasionado
@@ -26,13 +26,14 @@ export function About() {
                         bien aplicados y proyectos que escalan sin deuda técnica.
                     </p>
 
-                    <div>
+                    <div className={styles.links}>
                         {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
                             <a
                                 key={label}
                                 href={href}
                                 target={href.startsWith('mailto') ? undefined : '_blank'}
                                 rel="noopener noreferrer"
+                                className={styles.linkChip}
                             >
                                 <Icon />
                                 {label}
@@ -41,13 +42,13 @@ export function About() {
                     </div>
                 </div>
 
-                <div>
+                <div className={styles.skillsGrid}>
                     {SKILL_CATEGORIES.map(({ label, skills }) => (
-                        <div key={label}>
-                            <p>{label}</p>
-                            <div>
+                        <div key={label} className={styles.skillCard}>
+                            <p className={styles.skillLabel}>{label}</p>
+                            <div className={styles.skillTags}>
                                 {skills.map(skill => (
-                                    <span key={skill}>{skill}</span>
+                                    <span key={skill} className={styles.skillTag}>{skill}</span>
                                 ))}
                             </div>
                         </div>

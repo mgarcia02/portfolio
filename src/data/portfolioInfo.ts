@@ -18,7 +18,7 @@ import DockerIcon from '@/assets/icons/docker.svg?react'
 import VSCodeIcon from '@/assets/icons/vscode.svg?react'
 
 export const NAV_LINKS = [
-    { href: '#about',    label: '01 / about' },
+    { href: '#about',    label: '01 / Sobre mí' },
     { href: '#projects', label: '02 / proyectos' },
     { href: '#contact',  label: '03 / contacto' },
 ]

@@ -10,9 +10,10 @@
     --text:             #e8e8ea;
     --muted:            #6b6b72;
     --muted2:           #3a3a42;
-    --logo:              #ffffff;
+    --ink:              #ffffff;
     --btn-text:         #0a0a0b;
     --nav-bg:           rgba(10, 10, 11, 0.75);
+    --skill-tag-bg:     rgba(255, 255, 255, 0.04);
 }
 
 html  { scroll-behavior: smooth; }
