@@ -13,6 +13,9 @@
     --ink:              #ffffff;
     --btn-text:         #0a0a0b;
     --nav-bg:           rgba(10, 10, 11, 0.75);
+    --stack-tag-bg:     rgba(123, 97, 255, 0.08);
+    --stack-tag-border: rgba(123, 97, 255, 0.2);
+    --stack-tag-color:  #a89cff;
     --skill-tag-bg:     rgba(255, 255, 255, 0.04);
 }
 
