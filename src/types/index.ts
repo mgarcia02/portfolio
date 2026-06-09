@@ -1,3 +1,10 @@
+export type Theme = 'dark' | 'light'
+
+export interface ThemeContextValue {
+    theme: Theme
+    toggle: () => void
+}
+
 export interface Project {
     id: number
     slug: string

@@ -22,3 +22,7 @@
     transform: translate(-50%, -50%);
     transition: transform 0.18s ease, border-color 0.4s;
 }
+
+[data-theme='light'] .dot {
+    mix-blend-mode: normal;
+}

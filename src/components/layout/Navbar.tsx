@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from './Navbar.module.css'
 import { NAV_LINKS } from '@/data/portfolioInfo'
+import ThemeToggle from '../ui/ThemeToggle'
 
 
 function Navbar() {
@@ -28,6 +29,7 @@ function Navbar() {
             </ul>
 
             <div className={styles.actions}>
+                <ThemeToggle />
                 <a href="mailto:mariogrdg02@outlook.com" className={styles.contactBtn}>
                     Contactar →
                 </a>

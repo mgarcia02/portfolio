@@ -1,6 +1,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
+:root,
+[data-theme='dark'] {
     --bg:               #0a0a0b;
     --surface:          #111113;
     --surface2:         #18181c;
@@ -18,6 +19,26 @@
     --stack-tag-color:  #a89cff;
     --grid-accent:      rgba(200, 241, 53, 0.15);
     --skill-tag-bg:     rgba(255, 255, 255, 0.04);
+}
+
+[data-theme='light'] {
+    --bg:               #f5f0e8;
+    --surface:          #ede8df;
+    --surface2:         #e4ddd2;
+    --border:           rgba(0, 0, 0, 0.08);
+    --accent:           #1a7a4a;
+    --accent-rgb:       26, 122, 74;
+    --text:             #1c1a18;
+    --muted:            #7a7060;
+    --muted2:           #c8bfb0;
+    --ink:              #1c1a18;
+    --btn-text:         #f5f0e8;
+    --nav-bg:           rgba(245, 240, 232, 0.88);
+    --stack-tag-bg:     rgba(26, 122, 74, 0.06);
+    --stack-tag-border: rgba(26, 122, 74, 0.15);
+    --stack-tag-color:  #2ea86a;
+    --grid-accent:      rgba(26, 122, 74, 0.12);
+    --skill-tag-bg:     rgba(0, 0, 0, 0.04);
 }
 
 html  { scroll-behavior: smooth; }
