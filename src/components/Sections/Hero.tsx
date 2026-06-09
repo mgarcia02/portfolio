@@ -3,6 +3,11 @@ import styles from "./Hero.module.css"
 export function Hero() {
     return (
         <section className={styles.hero}>
+            <div className={`${styles.gridLine} ${styles.vAccent}`} style={{ left: '30%' }} />
+            <div className={`${styles.gridLine} ${styles.v}`} style={{ left: '60%' }} />
+            <div className={`${styles.gridLine} ${styles.v}`} style={{ left: '80%' }} />
+            <div className={`${styles.gridLine} ${styles.h}`} style={{ top:  '38%' }} />
+            
             <div className={styles.topRow}>
                 <span className={styles.tag}>Disponible para trabajar · 2026</span>
                 <span className={styles.location}>Madrid, España — Full Stack Dev</span>
