@@ -42,3 +42,7 @@
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
 }
+
+@media (max-width: 900px) {
+    .track { gap: 5rem; }
+}

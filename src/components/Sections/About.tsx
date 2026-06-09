@@ -9,7 +9,7 @@ export function About() {
                     <p className={styles.sectionLabel}>01 / Sobre mí</p>
                     <h2 className={styles.sectionTitle}>
                         Donde el<br />
-                        código <em className={styles.accentWord}>piensa</em>.
+                        código <em className={styles.outline}>piensa.</em>
                     </h2>
                     <p>
                         Soy desarrollador <strong>Full Stack</strong> con background en IA, apasionado

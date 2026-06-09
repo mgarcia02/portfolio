@@ -31,15 +31,18 @@
 }
 .sectionTitle {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+    font-size: clamp(2.5rem, 4vw, 4rem);
     font-weight: 800;
-    font-style:unset;
     letter-spacing: -0.03em;
     color: var(--ink);
     line-height: 1.1;
     margin-bottom: 1.5rem;
 }
-.accentWord { color: var(--accent); font-style: normal; }
+.outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--accent);
+    font-style: normal;
+}
 
 /* Bio text */
 .text p {
@@ -88,7 +91,7 @@
 .skillCard:hover { border-color: rgba(var(--accent-rgb), 0.25); }
 .skillLabel {
     font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     color: var(--accent);
     letter-spacing: 0.1em;
     text-transform: uppercase;

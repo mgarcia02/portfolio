@@ -13,15 +13,15 @@ export function Hero() {
             </div>
             <div className={styles.bottomRow}>
                 <p className={styles.desc}>
-                    Desarrollador Full Stack especializado en aplicaciones con IA integrada.
-                    React, Node.js, TypeScript — arquitectura limpia y código que escala.
+                    Desarrollador Full Stack enfocado en crear aplicaciones potenciadas por IA.
+                    Construyo sistemas claros, eficientes y preparados para escalar.
                 </p>
                 <div className={styles.info}>
                     <a href="#projects" className={`${styles.btn} ${styles.btnPrimary}`}>
                         Ver proyectos →
                     </a>
                     <a
-                        href="#"
+                        href="https://www.linkedin.com/in/mario-garc%C3%ADa-rela%C3%B1o-b66878284/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`${styles.btn} ${styles.btnGhost}`}
