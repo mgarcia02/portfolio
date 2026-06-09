@@ -1,4 +1,28 @@
-.section { padding: 7rem 3rem; }
+.section { 
+    padding: 7rem 3rem;
+    position: relative;
+}
+
+/* Grid lines */
+.gridLine { position: absolute; pointer-events: none; }
+.gridLine.v {
+    width: 1px;
+    top: 0; 
+    bottom: 0;
+    background: linear-gradient(transparent, var(--border) 20%, var(--border) 80%, transparent);
+}
+.gridLine.vAccent {
+    width: 1px; 
+    top: 0; 
+    bottom: 0;
+    background: linear-gradient(transparent, var(--grid-accent) 20%, var(--grid-accent) 80%, transparent);
+}
+.gridLine.h {
+    height: 1px; 
+    left: 0; 
+    right: 0;
+    background: linear-gradient(transparent, var(--border) 20%, var(--border) 80%, transparent);
+}
 
 .projects { max-width: 1100px; margin: 0 auto; }
 

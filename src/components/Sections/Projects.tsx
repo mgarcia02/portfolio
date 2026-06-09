@@ -9,6 +9,11 @@ export function Projects() {
 
     return (
         <section id="projects" className={styles.section}>
+            <div className={`${styles.gridLine} ${styles.vAccent}`} style={{ left: '30%' }} />
+            <div className={`${styles.gridLine} ${styles.v}`} style={{ left: '60%' }} />
+            <div className={`${styles.gridLine} ${styles.v}`} style={{ left: '80%' }} />
+            <div className={`${styles.gridLine} ${styles.h}`} style={{ top:  '38%' }} />
+            
             <div className={styles.projects}>
                 <div ref={headerRef} className={`${styles.header} reveal`}>
                     <div>
