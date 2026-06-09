@@ -5,3 +5,20 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+}
+
+.accent { color: var(--accent); }
+
+@media (max-width: 900px) {
+    .footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        padding: 1.5rem;
+    }
+}
