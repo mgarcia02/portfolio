@@ -31,6 +31,27 @@ body {
     overflow-x: hidden;
 }
 
+/* SCROLL REVEAL */
+.reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.reveal.visible .reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (max-width: 768px) {
+    .reveal {
+        transition-delay: 0s !important;
+    }
+}
+
+/*  SCROLLBAR */
 ::-webkit-scrollbar              { width: 4px; }
 ::-webkit-scrollbar-track        { background: var(--bg); }
 ::-webkit-scrollbar-thumb        { background: var(--muted2); border-radius: 2px; }

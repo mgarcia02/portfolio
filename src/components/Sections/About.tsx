@@ -1,11 +1,15 @@
 import { SKILL_CATEGORIES, SOCIAL_LINKS } from '@/data/portfolioInfo'
 import styles from './About.module.css'
+import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 export function About() {
+    const textRef   = useScrollReveal<HTMLDivElement>()
+    const skillsRef = useScrollReveal<HTMLDivElement>()
+
     return (
         <section id="about" className={styles.section}>
             <div className={styles.grid}>
-                <div className={styles.text}>
+                <div ref={textRef} className={`${styles.text} reveal`}>
                     <p className={styles.sectionLabel}>01 / Sobre mí</p>
                     <h2 className={styles.sectionTitle}>
                         Donde el<br />
@@ -42,7 +46,7 @@ export function About() {
                     </div>
                 </div>
 
-                <div className={styles.skillsGrid}>
+                <div ref={skillsRef}  className={`${styles.skillsGrid} reveal`}>
                     {SKILL_CATEGORIES.map(({ label, skills }) => (
                         <div key={label} className={styles.skillCard}>
                             <p className={styles.skillLabel}>{label}</p>

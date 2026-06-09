@@ -143,7 +143,7 @@
     color: var(--accent);
     transform: translateY(-2px);
 }
-@media (max-width: 900px) {
+@media (max-width: 768px) {
     .hero { padding: 5.5rem 1.5rem 0; }
     .location { display: none; }
     .tag { display: none; }
