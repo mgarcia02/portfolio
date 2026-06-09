@@ -4,6 +4,7 @@
     border-bottom: 1px solid var(--border);
     background: var(--surface2);
     transition: background 0.4s;
+    overflow: hidden;
 }
 
 .track {
@@ -11,12 +12,6 @@
     gap: 7rem;
     width: max-content;
     animation: marquee 35s linear infinite;
-}
-
-.items {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
 }
 
 .item {

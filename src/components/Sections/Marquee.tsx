@@ -8,9 +8,9 @@ export function Marquee() {
         <div className={styles.band}>
             <div className={styles.track}>
                 {doubled.map(({label, icon: Icon}, i) => (
-                    <div className={styles.items}>
+                    <div key={i} className={styles.item}>
                         <Icon className={styles.icon} />
-                        <span key={i} className={styles.item}>{label}</span>     
+                        <span>{label}</span>     
                     </div>
                 ))}
             </div>
