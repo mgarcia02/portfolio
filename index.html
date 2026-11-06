@@ -8,17 +8,34 @@
       content="Mario García, desarrollador Full Stack enfocado en aplicaciones potenciadas por IA."
     />
     <meta name="author" content="Mario García" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/favicon-mg-light.svg"
-      media="(prefers-color-scheme: light)"
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#f0f1fa" />
+    <link rel="canonical" href="https://mgarcia02.github.io/portfolio/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:url" content="https://mgarcia02.github.io/portfolio/" />
+    <meta property="og:title" content="Mario García · Full Stack Developer" />
+    <meta
+      property="og:description"
+      content="Desarrollador Full Stack enfocado en crear aplicaciones potenciadas por IA."
     />
-    <link rel="icon" type="image/svg+xml" href="/favicon-mg-dark.svg" media="(prefers-color-scheme: dark)" />
+    <meta property="og:image" content="https://mgarcia02.github.io/portfolio/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>Mario García · Full Stack Developer</title>
     <script>
       document.documentElement.classList.add('js')
     </script>
+    <link
+      rel="preload"
+      href="/node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-opsz-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
   <body>
@@ -336,6 +353,8 @@
                 <p class="eyebrow" data-stagger>04 · Socio · Proyectos para clientes</p>
                 <h3 class="p-title" data-stagger>
                   <img
+                    loading="lazy"
+                    decoding="async"
                     class="p-logo"
                     src="/src/assets/relpa-logo.svg"
                     alt="Relpa"
