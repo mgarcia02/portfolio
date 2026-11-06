@@ -11,7 +11,7 @@ const MESSAGES = [
   'Montando las 12 teclas en la placa…',
 ]
 const SEGMENTS = 30
-const MIN_DURATION_MS = prefersReducedMotion ? 500 : 2300
+const MIN_DURATION_MS = prefersReducedMotion ? 500 : 1600
 /** Progress waits here until the page reports it is ready. */
 const WAITING_PROGRESS = 0.92
 const EXIT_DELAY_MS = 220

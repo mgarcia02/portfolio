@@ -1,9 +1,10 @@
 import * as THREE from 'three'
-import { hasFinePointer, prefersReducedMotion } from '../config/env'
+import { hasFinePointer, isCompactViewport, prefersReducedMotion } from '../config/env'
 import { KEYS, SIGNATURE_KEY, type Category } from '../content/keys'
 import { PROJECT_LEGENDS } from '../content/projects'
 import { pointer } from '../input/pointer'
 import { clamp, easeInOutCubic, lerp, smoothstep } from '../lib/math'
+import { nextTask } from '../lib/schedule'
 import { gsap } from '../motion/gsap'
 import { CAMERA, KEY_BODY_COLORS, RELPA_BODY_COLOR } from './constants'
 import { LAYOUTS, type Pose } from './layouts'
@@ -19,6 +20,10 @@ const LEGEND_SIZE = 0.68
 const LEGEND_SWAP_TIMEOUT = 0.9
 const PRESS_DURATION_MS = 320
 const PRESS_DOWN_MS = 70
+/** Average frame time above which the render resolution steps down. */
+const SLOW_FRAME_SECONDS = 1 / 28
+const FRAMES_PER_SAMPLE = 40
+const MIN_PIXEL_RATIO = 0.75
 
 interface Key {
   group: THREE.Group
@@ -60,8 +65,8 @@ export class KeyboardScene {
   private readonly raycaster = new THREE.Raycaster()
   private readonly flash: THREE.PointLight
   private readonly dust: THREE.Points
-  private readonly keys: Key[]
-  private readonly projectLegends: THREE.Texture[]
+  private readonly keys: Key[] = []
+  private readonly projectLegends: THREE.Texture[] = []
   private readonly signatureColor = linearColor(KEY_BODY_COLORS.indigo)
   private readonly relpaColor = linearColor(RELPA_BODY_COLOR)
   private readonly intro = { scale: prefersReducedMotion ? 1 : 0, spin: prefersReducedMotion ? 1 : 0 }
@@ -70,7 +75,12 @@ export class KeyboardScene {
   private readonly tmpVector = new THREE.Vector3()
   private readonly tmpNdc = new THREE.Vector2()
 
-  constructor(canvas: HTMLCanvasElement, timeline: Timeline, relpaLogo: HTMLImageElement) {
+  private pixelRatio = Math.min(window.devicePixelRatio || 1, isCompactViewport() ? 1.5 : 2)
+  private lastFrameAt = 0
+  private sampledTime = 0
+  private sampledFrames = 0
+
+  private constructor(canvas: HTMLCanvasElement, timeline: Timeline) {
     this.canvas = canvas
     this.timeline = timeline
     this.renderer = new THREE.WebGLRenderer({
@@ -79,7 +89,7 @@ export class KeyboardScene {
       alpha: true,
       powerPreference: 'high-performance',
     })
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2))
+    this.renderer.setPixelRatio(this.pixelRatio)
     this.renderer.setClearColor(0x000000, 0)
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping
     this.renderer.toneMappingExposure = 1.08
@@ -89,17 +99,40 @@ export class KeyboardScene {
     this.flash = lightScene(this.scene, this.renderer)
     this.dust = createDust()
     this.scene.add(this.world, this.dust)
+  }
 
+  /** Builds the scene in small steps, yielding in between so the page stays responsive. */
+  static async create(
+    canvas: HTMLCanvasElement,
+    timeline: Timeline,
+    relpaLogo: HTMLImageElement,
+  ): Promise<KeyboardScene> {
+    const instance = new KeyboardScene(canvas, timeline)
+    await nextTask()
+    await instance.build(relpaLogo)
+    return instance
+  }
+
+  private async build(relpaLogo: HTMLImageElement): Promise<void> {
     const legends = new LegendFactory(Math.min(8, this.renderer.capabilities.getMaxAnisotropy()))
-    const signature = KEYS[SIGNATURE_KEY]
-    this.projectLegends = PROJECT_LEGENDS.map((legend) =>
-      legend.kind === 'relpa' ? legends.logo(relpaLogo) : legends.project(legend, signature),
-    )
+    const upload = (texture: THREE.Texture): THREE.Texture => {
+      this.renderer.initTexture(texture)
+      return texture
+    }
+
+    for (const legend of PROJECT_LEGENDS) {
+      const texture =
+        legend.kind === 'relpa' ? legends.logo(relpaLogo) : legends.project(legend, KEYS[SIGNATURE_KEY])
+      this.projectLegends.push(upload(texture))
+      await nextTask()
+    }
 
     const bodyGeometry = createKeyGeometry()
     const legendGeometry = new THREE.PlaneGeometry(LEGEND_SIZE, LEGEND_SIZE)
-    this.keys = KEYS.map((definition, index) => {
-      const stackLegend = index === SIGNATURE_KEY ? legends.signature(definition) : legends.skill(definition)
+    for (const [index, definition] of KEYS.entries()) {
+      const stackLegend = upload(
+        index === SIGNATURE_KEY ? legends.signature(definition) : legends.skill(definition),
+      )
       const bodyMaterial = new THREE.MeshStandardMaterial({
         color: linearColor(KEY_BODY_COLORS[definition.color]),
         roughness: definition.color === 'indigo' ? 0.36 : 0.52,
@@ -126,13 +159,13 @@ export class KeyboardScene {
       group.add(body, legend)
       this.world.add(group)
 
-      return {
+      this.keys.push({
         group,
         body,
         bodyMaterial,
         legendMaterial,
         stackLegend,
-        messageLegend: legends.letter(definition),
+        messageLegend: upload(legends.letter(definition)),
         currentLegend: stackLegend,
         pendingLegend: null,
         pendingSince: 0,
@@ -140,8 +173,12 @@ export class KeyboardScene {
         lift: 0,
         pressedAt: -9,
         flashedAt: -9,
-      }
-    })
+      })
+      await nextTask()
+    }
+
+    this.renderer.compile(this.scene, this.camera)
+    await nextTask()
   }
 
   resize(): { width: number; height: number } {
@@ -175,7 +212,26 @@ export class KeyboardScene {
     return hit ? (hit.object.userData.key as number) : -1
   }
 
+  /** Trades sharpness for smoothness on devices that cannot keep up. Never steps back up. */
+  private adaptResolution(time: number): void {
+    const elapsed = time - this.lastFrameAt
+    this.lastFrameAt = time
+    if (elapsed > 0.25) return // Tab switch or similar: not a real frame time.
+    this.sampledTime += elapsed
+    this.sampledFrames++
+    if (this.sampledFrames < FRAMES_PER_SAMPLE) return
+
+    const average = this.sampledTime / this.sampledFrames
+    this.sampledTime = 0
+    this.sampledFrames = 0
+    if (average > SLOW_FRAME_SECONDS && this.pixelRatio > MIN_PIXEL_RATIO) {
+      this.pixelRatio = Math.max(MIN_PIXEL_RATIO, this.pixelRatio - 0.5)
+      this.renderer.setPixelRatio(this.pixelRatio)
+    }
+  }
+
   update(frame: SceneFrame): void {
+    this.adaptResolution(frame.time)
     this.keys.forEach((key, index) => this.updateKey(key, index, frame))
     this.updateFlash(frame.time)
 

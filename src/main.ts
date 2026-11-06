@@ -1,11 +1,11 @@
 import relpaMonogramUrl from './assets/relpa-monogram.svg'
-import { prefersReducedMotion, supportsWebGL } from './config/env'
+import { isTooShortToPin, prefersReducedMotion, supportsWebGL } from './config/env'
 import { initPointer, UI_SELECTOR } from './input/pointer'
 import { $, closest } from './lib/dom'
 import { ScrollTrigger } from './motion/gsap'
 import { initSmoothScroll, startSmoothScroll } from './motion/smoothScroll'
 import { initTextReveal } from './motion/textReveal'
-import { KeyboardScene } from './scene/KeyboardScene'
+import type { KeyboardScene } from './scene/KeyboardScene'
 import { SECTION, Timeline, isHolding, type ScrollState } from './scene/timeline'
 import { ContactTyping } from './ui/contactTyping'
 import { initCopyEmail } from './ui/copyEmail'
@@ -29,9 +29,12 @@ const root = document.documentElement
 const timeline = new Timeline()
 let scene: KeyboardScene | null = null
 let isReady = false
+/** The scene stays idle while the loader covers it. */
+let isSceneLive = false
 
-// Pinned layouts only make sense with the 3D scene: without WebGL the page stays a plain document.
-const has3D = supportsWebGL()
+// Pinned layouts need the 3D scene and enough height: otherwise the page stays a plain document.
+const wasTooShort = isTooShortToPin()
+const has3D = supportsWebGL() && !wasTooShort
 root.classList.toggle('pinned', has3D)
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
@@ -74,7 +77,7 @@ function frame(now: number): void {
   hud.update(scrollY)
   marquee.update(scrollY, dt)
   cursor.update((scene?.hoveredKey ?? -1) > -1)
-  if (!scene) return
+  if (!scene || !isSceneLive) return
 
   const state = timeline.stateAt(scrollY)
   projectsPanel.update(state)
@@ -125,7 +128,8 @@ async function boot(): Promise<void> {
   const logo = await loadSceneAssets()
   if (has3D) {
     try {
-      scene = new KeyboardScene($<HTMLCanvasElement>('#scene'), timeline, logo)
+      const { KeyboardScene } = await import('./scene/KeyboardScene')
+      scene = await KeyboardScene.create($<HTMLCanvasElement>('#scene'), timeline, logo)
     } catch (error) {
       console.error(error)
       root.classList.remove('pinned')
@@ -136,6 +140,8 @@ async function boot(): Promise<void> {
   ScrollTrigger.addEventListener('refresh', measure)
   let resizeTimer = 0
   addEventListener('resize', () => {
+    // Rotating a phone can cross the limit, and the page cannot switch layout mode live.
+    if (supportsWebGL() && isTooShortToPin() !== wasTooShort) location.reload()
     window.clearTimeout(resizeTimer)
     resizeTimer = window.setTimeout(() => ScrollTrigger.refresh(), RESIZE_DEBOUNCE_MS)
   })
@@ -147,6 +153,7 @@ async function boot(): Promise<void> {
 runLoader(
   () => isReady,
   () => {
+    isSceneLive = true
     startSmoothScroll()
     ScrollTrigger.refresh()
     playHeroEntrance?.()

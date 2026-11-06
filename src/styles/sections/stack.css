@@ -6,7 +6,7 @@
 }
 .grid-slot {
   flex: 1;
-  min-height: 240px;
+  min-height: 150px;
 }
 .readout {
   display: none;
@@ -98,10 +98,10 @@
   transition: opacity 0.35s;
 }
 .pinned .cat:not(.on) .cat-head {
-  opacity: 0.4;
+  opacity: 0.55;
 }
 .pinned .cat:not(.on) .cat-head:hover {
-  opacity: 0.75;
+  opacity: 0.8;
 }
 .pinned .cat-chips {
   grid-row: 2;
@@ -138,5 +138,20 @@
   }
   .pinned .cat-chips {
     grid-row: 3;
+  }
+}
+@media (max-width: 820px) and (max-height: 780px) {
+  .pinned .pin-skills .pin-inner {
+    padding-block: 60px 14px;
+    gap: 8px;
+  }
+  .pin-skills .sec-head {
+    gap: 4px;
+  }
+  .pin-skills .h-lg {
+    font-size: 28px;
+  }
+  .readout {
+    font-size: 12px;
   }
 }

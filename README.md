@@ -47,7 +47,8 @@ ellos, de modo que el diseño responsive del 3D se controla desde CSS.
 ## Accesibilidad y resistencia
 
 - Con `prefers-reduced-motion` no hay scroll suave, revelados ni movimiento autónomo.
-- Sin WebGL, la página se muestra como un documento normal, con todo el contenido.
+- Sin WebGL, o en pantallas muy bajas como un móvil en horizontal, la página se muestra como un documento normal, con
+  todo el contenido.
 - Sin JavaScript, todo el contenido sigue siendo visible.
 
 ## Desarrollo

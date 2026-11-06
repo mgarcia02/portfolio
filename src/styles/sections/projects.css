@@ -249,3 +249,32 @@
     transition: none;
   }
 }
+@media (max-width: 820px) and (max-height: 780px) {
+  .pinned .pin-projects .pin-inner {
+    gap: 8px;
+    padding-block: 60px 12px;
+  }
+  .pin-projects .sec-top > div:first-child {
+    gap: 2px;
+  }
+  .pin-projects .h-lg {
+    font-size: 24px;
+  }
+  .pin-projects .counter {
+    font-size: 44px;
+  }
+  .pinned .proj-stage {
+    grid-template-rows: minmax(72px, 13vh) auto;
+    gap: 8px;
+  }
+  .pinned .proj {
+    gap: 6px;
+  }
+  .pinned .p-title {
+    font-size: 24px;
+  }
+  .pinned .p-body {
+    padding: 14px;
+    gap: 8px;
+  }
+}

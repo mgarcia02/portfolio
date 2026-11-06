@@ -16,5 +16,5 @@ export function initGrain(): void {
     image.data[index + 3] = 255
   }
   context.putImageData(image, 0, 0)
-  $('.grain').style.setProperty('--noise', `url(${canvas.toDataURL()})`)
+  $('.grain').style.setProperty('--noise', `url(${canvas.toDataURL('image/webp', 0.6)})`)
 }

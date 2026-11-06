@@ -12,3 +12,6 @@ export function supportsWebGL(): boolean {
     return false
   }
 }
+
+/** Landscape phones and the like: pinned sections need more height than this to fit their content. */
+export const isTooShortToPin = (): boolean => window.innerHeight < 600

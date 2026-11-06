@@ -2,6 +2,9 @@ import { $, $$ } from '../lib/dom'
 import { gsap } from './gsap'
 
 const HIDDEN_CHAR = { yPercent: 118, rotate: 9, transformOrigin: '0% 100%' }
+const DIMMED_WORD = 0.14
+/** Viewport share the section has travelled when its words start lighting up. */
+const LIGHTING_START = 0.65
 
 /** Wraps every character of each `.ln` line in a span, keeping words unbreakable. */
 function splitIntoChars(heading: HTMLElement): HTMLElement[] {
@@ -62,17 +65,18 @@ function lightAboutCopyOnScroll(): void {
       words.push(word)
     })
   })
-  gsap.fromTo(
-    words,
-    { opacity: 0.14 },
-    {
-      opacity: 1,
-      ease: 'none',
-      stagger: 0.08,
-      duration: 0.4,
-      scrollTrigger: { trigger: '#sobre-mi', start: 'top 35%', end: 'bottom bottom', scrub: 0.6 },
-    },
-  )
+  // The copy stays fully legible until the section is about to enter the viewport.
+  const section = $('#sobre-mi')
+  const stagger = 0.08
+  const duration = 0.4
+  const lightingTime = duration + stagger * (words.length - 1)
+  const leadShare = LIGHTING_START / (section.offsetHeight / window.innerHeight)
+  const leadTime = (lightingTime * leadShare) / (1 - leadShare)
+
+  gsap
+    .timeline({ scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom bottom', scrub: 0.6 } })
+    .set(words, { opacity: DIMMED_WORD }, 0.001)
+    .to(words, { opacity: 1, ease: 'none', stagger, duration }, leadTime)
 }
 
 function parallaxHeroTitle(): void {
