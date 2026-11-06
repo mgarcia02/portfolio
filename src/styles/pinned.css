@@ -1,0 +1,20 @@
+/* Sticky sections whose scroll length drives the 3D timeline. */
+.pin {
+  position: relative;
+}
+.pin-inner {
+  position: relative;
+  z-index: 2;
+  padding-block: 72px;
+}
+.pinned .pin-about,
+.pinned .pin-skills {
+  height: 320vh;
+}
+.pinned .pin-inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding-block: 88px 32px;
+  overflow: hidden;
+}

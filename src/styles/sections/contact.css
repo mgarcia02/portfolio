@@ -1,0 +1,123 @@
+/* Contact and footer. */
+.contact {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 88px;
+  padding-bottom: max(24px, env(safe-area-inset-bottom, 0px));
+}
+.contact > * {
+  position: relative;
+  z-index: 2;
+}
+.contact .sec-head h2 {
+  font-size: clamp(44px, 7.5vw, 108px);
+  line-height: 0.9;
+  font-weight: 400;
+}
+.contact-slot {
+  flex: 1;
+  min-height: 200px;
+  max-height: 300px;
+  width: min(100%, 820px);
+  margin-inline: auto;
+}
+.typed {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  min-height: 1.4em;
+}
+.typed .caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  vertical-align: -0.12em;
+  margin-left: 2px;
+  background: var(--indigo);
+  animation: blink 1s steps(2) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.contact-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+.contact-body > p {
+  max-width: 46ch;
+  font-size: 18px;
+}
+.mailrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 6px 6px 18px;
+  background: var(--paper);
+  border: 1px solid var(--haze);
+  border-radius: var(--r-input);
+  box-shadow: var(--shadow);
+  max-width: 100%;
+}
+.mailrow span {
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  user-select: all;
+}
+.copy {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 1px solid var(--haze);
+  background: var(--lavender);
+  color: var(--ink);
+  border-radius: var(--r-btn);
+  padding: 9px 14px;
+  flex: none;
+  transition: opacity 0.3s;
+}
+.copy:hover {
+  opacity: 0.7;
+}
+.contact-ctas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.foot b {
+  font-weight: 500;
+  color: var(--indigo);
+}
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--haze);
+  padding-top: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+@media (max-width: 820px) {
+  .contact-slot {
+    max-height: 240px;
+  }
+  .contact-body > p {
+    font-size: 16px;
+  }
+}

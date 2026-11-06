@@ -1,0 +1,20 @@
+/* Design tokens: palette, type, radii and easing. */
+:root {
+  --lavender: #f0f1fa;
+  --paper: #ffffff;
+  --ink: #000000;
+  --graphite: #2b2e3a;
+  --haze: #e4e6ef;
+  --indigo: #1a2ffb;
+  --lime: #c1ff00;
+  --periwinkle: #aab3ff;
+  --font: 'DM Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --gutter: clamp(16px, 4.6vw, 72px);
+  --shadow: rgba(0, 0, 0, 0.04) 0 6px 10px 0, rgba(0, 0, 0, 0.04) 0 2px 4px 0;
+  --r-sm: 3px;
+  --r-card: 15px;
+  --r-input: 18px;
+  --r-btn: 87.5px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
+}

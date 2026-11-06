@@ -1,0 +1,133 @@
+/* Fixed scroll percentage and section menu. */
+.hud {
+  display: none;
+}
+.js .hud {
+  position: fixed;
+  top: max(28px, env(safe-area-inset-top, 0px));
+  right: max(max(var(--gutter), calc((100vw - 1400px) / 2 + var(--gutter))), env(safe-area-inset-right, 0px));
+  z-index: 60;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hud-pct {
+  font-size: 14px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.hud-on .hud-pct {
+  opacity: 1;
+}
+.menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  transition: opacity 0.3s;
+}
+.menu-btn:hover {
+  opacity: 0.7;
+}
+.menu-ico {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  transition: transform 0.5s var(--ease);
+}
+.menu-ico::before,
+.menu-ico::after {
+  content: '';
+  position: absolute;
+  background: var(--ink);
+}
+.menu-ico::before {
+  left: 0;
+  right: 0;
+  top: 4px;
+  height: 1px;
+}
+.menu-ico::after {
+  top: 0;
+  bottom: 0;
+  left: 4px;
+  width: 1px;
+}
+.menu-open .menu-ico {
+  transform: rotate(45deg);
+}
+.menu-card {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 16px 12px 14px;
+  background: var(--paper);
+  border: 1px solid var(--haze);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.25s,
+    transform 0.45s var(--ease),
+    visibility 0s 0.25s;
+}
+.menu-open .menu-card {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 0.25s,
+    transform 0.45s var(--ease);
+}
+.menu-card a {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  align-items: center;
+  font-size: 16px;
+  padding-block: 5px;
+  transition: opacity 0.3s;
+}
+.menu-card a::before {
+  content: '+';
+  color: var(--indigo);
+  font-weight: 500;
+  opacity: 0;
+  transform: rotate(-90deg);
+  transition:
+    opacity 0.3s,
+    transform 0.5s var(--ease);
+}
+.menu-card a.on {
+  font-weight: 500;
+}
+.menu-card a.on::before {
+  opacity: 1;
+  transform: none;
+}
+.menu-card a:hover {
+  opacity: 0.6;
+}
+@media (max-width: 820px) {
+  .js .hud {
+    top: max(14px, env(safe-area-inset-top, 0px));
+    right: max(16px, env(safe-area-inset-right, 0px));
+  }
+}

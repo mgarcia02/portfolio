@@ -1,0 +1,24 @@
+/* Velocity-skewed text strip. */
+.marquee {
+  position: relative;
+  z-index: 2;
+  padding-block: 72px;
+  overflow: hidden;
+}
+.mq-track {
+  display: flex;
+  width: max-content;
+  font-size: clamp(56px, 7.5vw, 108px);
+  line-height: 1;
+  font-weight: 400;
+  white-space: nowrap;
+  will-change: transform;
+}
+.mq-track span {
+  padding-right: 0.35em;
+}
+.mq-track em {
+  font-style: normal;
+  color: var(--indigo);
+  padding-right: 0.35em;
+}

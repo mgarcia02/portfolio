@@ -1,0 +1,37 @@
+/* Shared text styles and the letter-by-letter reveal markup. */
+.cap {
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.eyebrow {
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.eyebrow b {
+  font-weight: 500;
+  color: var(--indigo);
+}
+.h-lg {
+  font-size: clamp(34px, 4.1vw, 50px);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.ln {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.w {
+  display: inline-block;
+  white-space: nowrap;
+}
+.c {
+  display: inline-block;
+  will-change: transform;
+}

@@ -1,0 +1,38 @@
+/* Top bar. */
+.top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding-top: max(28px, env(safe-area-inset-top, 0px));
+  padding-bottom: 28px;
+}
+.logo {
+  font-size: 18px;
+  font-weight: 500;
+}
+.top-mid {
+  font-size: 14px;
+  text-align: center;
+}
+.top .btn {
+  justify-self: end;
+  margin-right: 92px;
+}
+@media (max-width: 820px) {
+  .top {
+    grid-template-columns: 1fr auto;
+    padding-top: max(14px, env(safe-area-inset-top, 0px));
+  }
+  .top .btn {
+    margin-right: 84px;
+  }
+  .top-mid {
+    display: none;
+  }
+}

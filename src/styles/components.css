@@ -1,0 +1,122 @@
+/* Reusable UI pieces: buttons, links, cards, tags and 3D slots. */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  padding: 14px 24px;
+  border-radius: var(--r-btn);
+  background: var(--graphite);
+  color: var(--paper);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1;
+  box-shadow: var(--shadow);
+  transition: transform 0.5s var(--ease);
+}
+.btn .tick {
+  width: 9px;
+  height: 1px;
+  background: var(--paper);
+  flex: none;
+}
+.btn-label {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: 1.15em;
+  line-height: 1.15;
+}
+.btn-label span {
+  display: block;
+  transition: transform 0.55s var(--ease);
+}
+.btn:hover .btn-label span {
+  transform: translateY(-100%);
+}
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1.2;
+  padding-block: 4px;
+}
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease);
+}
+.link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.link:hover {
+  opacity: 0.7;
+}
+.slot {
+  display: none;
+}
+.pinned .slot {
+  display: block;
+}
+.sec-head {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.card {
+  background: var(--paper);
+  border: 1px solid var(--haze);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tags li {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid var(--haze);
+  border-radius: var(--r-btn);
+  background: var(--lavender);
+}
+@media (max-width: 820px) {
+  .card {
+    padding: 18px;
+    gap: 12px;
+  }
+}
+@media (min-width: 821px) and (max-height: 800px) {
+  .pinned .tags li {
+    padding: 3px 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn-label span {
+    transition: none;
+  }
+}
