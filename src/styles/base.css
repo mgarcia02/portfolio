@@ -43,12 +43,12 @@ ul {
   list-style: none;
 }
 :focus-visible {
-  outline: 2px solid var(--indigo);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: var(--r-sm);
 }
 ::selection {
-  background: var(--indigo);
+  background: var(--accent);
   color: var(--paper);
 }
 .wrap {

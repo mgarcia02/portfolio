@@ -51,7 +51,7 @@
   width: 64px;
   height: 64px;
   margin: -32px 0 0 -32px;
-  border-color: var(--indigo);
+  border-color: var(--accent);
 }
 .cursor.is-key .cur-ring {
   width: 76px;

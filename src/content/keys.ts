@@ -1,5 +1,5 @@
 export type Category = 'FE' | 'BE' | 'AI' | 'OPS'
-export type KeyColor = 'indigo' | 'paper' | 'graphite' | 'lime' | 'tools'
+export type KeyColor = 'accent' | 'paper' | 'graphite' | 'lime' | 'tools'
 
 export interface KeyDefinition {
   label: string
@@ -19,7 +19,7 @@ export const SIGNATURE_KEY = 0
 
 /** Grid order: left to right, top to bottom. `data-key` attributes in the markup index this list. */
 export const KEYS: readonly KeyDefinition[] = [
-  { label: 'MG.', category: null, description: 'MG. — la tecla de autor', color: 'indigo', letter: '↵' },
+  { label: 'MG.', category: null, description: 'MG. — la tecla de autor', color: 'accent', letter: '↵' },
   { label: 'React', category: 'FE', description: 'React · Frontend', color: 'paper', letter: 'H' },
   { label: 'TypeScript', category: 'FE', description: 'TypeScript · Frontend', color: 'paper', letter: 'O' },
   { label: 'Vue', category: 'FE', description: 'Vue · Frontend', color: 'paper', letter: 'L' },

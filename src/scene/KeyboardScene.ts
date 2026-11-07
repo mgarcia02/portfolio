@@ -67,7 +67,7 @@ export class KeyboardScene {
   private readonly dust: THREE.Points
   private readonly keys: Key[] = []
   private readonly projectLegends: THREE.Texture[] = []
-  private readonly signatureColor = linearColor(KEY_BODY_COLORS.indigo)
+  private readonly signatureColor = linearColor(KEY_BODY_COLORS.accent)
   private readonly relpaColor = linearColor(RELPA_BODY_COLOR)
   private readonly intro = { scale: prefersReducedMotion ? 1 : 0, spin: prefersReducedMotion ? 1 : 0 }
 
@@ -133,20 +133,15 @@ export class KeyboardScene {
       const stackLegend = upload(
         index === SIGNATURE_KEY ? legends.signature(definition) : legends.skill(definition),
       )
-      // The signature key must read as the UI accent: tone mapping would shift its blue towards violet,
-      // and strong reflections would wash it out. Its albedo in KEY_BODY_COLORS is calibrated for this.
-      const isSignature = definition.color === 'indigo'
-      const bodyMaterial = new (isSignature ? THREE.MeshPhysicalMaterial : THREE.MeshStandardMaterial)({
+      const isSignature = definition.color === 'accent'
+      const bodyMaterial = new THREE.MeshStandardMaterial({
         color: linearColor(KEY_BODY_COLORS[definition.color]),
-        roughness: isSignature ? 0.5 : 0.52,
-        toneMapped: !isSignature,
+        roughness: isSignature ? 0.36 : 0.52,
         metalness: 0,
-        envMapIntensity: isSignature ? 0.45 : 0.95,
-        emissive: linearColor('#3a4bff'),
+        envMapIntensity: 0.95,
+        emissive: linearColor('#8f7dff'),
         emissiveIntensity: 0,
       })
-      // Physical material only to lower specular reflectance, which would whiten the accent colour.
-      if (bodyMaterial instanceof THREE.MeshPhysicalMaterial) bodyMaterial.reflectivity = 0.15
       const decal = {
         map: stackLegend,
         transparent: true,

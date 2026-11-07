@@ -4,8 +4,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding-top: 88px;
+  gap: clamp(12px, 2.4vh, 24px);
+  padding-top: clamp(64px, 10vh, 88px);
   padding-bottom: max(24px, env(safe-area-inset-bottom, 0px));
 }
 .contact > * {
@@ -13,13 +13,13 @@
   z-index: 2;
 }
 .contact .sec-head h2 {
-  font-size: clamp(44px, 7.5vw, 108px);
+  font-size: clamp(44px, min(7.5vw, 10vh), 108px);
   line-height: 0.9;
   font-weight: 400;
 }
 .contact-slot {
   flex: 1;
-  min-height: 200px;
+  min-height: clamp(110px, 18vh, 200px);
   max-height: 300px;
   width: min(100%, 820px);
   margin-inline: auto;
@@ -37,7 +37,7 @@
   height: 1em;
   vertical-align: -0.12em;
   margin-left: 2px;
-  background: var(--indigo);
+  background: var(--accent);
   animation: blink 1s steps(2) infinite;
 }
 @keyframes blink {
@@ -49,12 +49,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: clamp(12px, 2.2vh, 24px);
   text-align: center;
 }
 .contact-body > p {
   max-width: 46ch;
-  font-size: 18px;
+  font-size: clamp(16px, 2.2vh, 18px);
 }
 .mailrow {
   display: flex;
@@ -105,7 +105,7 @@
   column-gap: 0.4em;
 }
 .foot-id span::before {
-  color: var(--indigo);
+  color: var(--accent);
   margin-right: 0.4em;
 }
 .foot-id span:last-child::before {

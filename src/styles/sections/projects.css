@@ -2,6 +2,11 @@
 .pinned .pin-projects {
   height: 560vh;
 }
+@media (max-width: 820px) {
+  .pinned .pin-projects {
+    height: 487vh;
+  }
+}
 .pin-projects .pin-inner {
   display: flex;
   flex-direction: column;
@@ -88,7 +93,7 @@
 }
 .p-list li::before {
   content: '+';
-  color: var(--indigo);
+  color: var(--accent);
   font-weight: 500;
 }
 .proj-foot {

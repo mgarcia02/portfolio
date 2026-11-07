@@ -11,6 +11,13 @@
 .pinned .pin-skills {
   height: 320vh;
 }
+/* Phones: shorter scroll runs, so a swipe covers more of each section. */
+@media (max-width: 820px) {
+  .pinned .pin-about,
+  .pinned .pin-skills {
+    height: 278vh;
+  }
+}
 .pinned .pin-inner {
   position: sticky;
   top: 0;
