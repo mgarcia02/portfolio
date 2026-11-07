@@ -142,7 +142,7 @@ export class KeyboardScene {
         toneMapped: !isSignature,
         metalness: 0,
         envMapIntensity: isSignature ? 0.45 : 0.95,
-        emissive: linearColor('#ffb39f'),
+        emissive: linearColor('#9ccbff'),
         emissiveIntensity: 0,
       })
       if (bodyMaterial instanceof THREE.MeshPhysicalMaterial) bodyMaterial.reflectivity = 0.15
