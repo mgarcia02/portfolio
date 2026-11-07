@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { hasFinePointer, isCompactViewport, prefersReducedMotion } from '../config/env'
+import { hasFinePointer, prefersReducedMotion } from '../config/env'
 import { KEYS, SIGNATURE_KEY, type Category } from '../content/keys'
 import { PROJECT_LEGENDS } from '../content/projects'
 import { pointer } from '../input/pointer'
@@ -22,8 +22,16 @@ const PRESS_DURATION_MS = 320
 const PRESS_DOWN_MS = 70
 /** Average frame time above which the render resolution steps down. */
 const SLOW_FRAME_SECONDS = 1 / 28
+/** Average frame time below which a lowered resolution may step back up. */
+const FAST_FRAME_SECONDS = 1 / 50
+/** Fast samples in a row needed before stepping back up. */
+const FAST_SAMPLES_TO_RECOVER = 3
 const FRAMES_PER_SAMPLE = 40
-const MIN_PIXEL_RATIO = 0.75
+/** First frames after the loader hides stutter while things warm up, so they are not measured. */
+const WARM_UP_SECONDS = 2
+const MAX_PIXEL_RATIO = 2
+const MIN_PIXEL_RATIO = 1
+const PIXEL_RATIO_STEP = 0.25
 
 interface Key {
   group: THREE.Group
@@ -75,10 +83,15 @@ export class KeyboardScene {
   private readonly tmpVector = new THREE.Vector3()
   private readonly tmpNdc = new THREE.Vector2()
 
-  private pixelRatio = Math.min(window.devicePixelRatio || 1, isCompactViewport() ? 1.5 : 2)
+  /** Highest resolution still worth trying; lowered each time a resolution proves too slow. */
+  private pixelRatioCeiling = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO)
+  private pixelRatio = this.pixelRatioCeiling
+  private firstFrameAt = -1
   private lastFrameAt = 0
   private sampledTime = 0
   private sampledFrames = 0
+  private fastSamples = 0
+  private justRaised = false
 
   private constructor(canvas: HTMLCanvasElement, timeline: Timeline) {
     this.canvas = canvas
@@ -219,10 +232,15 @@ export class KeyboardScene {
     return hit ? (hit.object.userData.key as number) : -1
   }
 
-  /** Trades sharpness for smoothness on devices that cannot keep up. Never steps back up. */
+  /**
+   * Trades sharpness for smoothness on devices that cannot keep up. A resolution that proved too
+   * slow is never tried again, but a device that runs comfortably below it steps back up to it.
+   */
   private adaptResolution(time: number): void {
+    if (this.firstFrameAt < 0) this.firstFrameAt = time
     const elapsed = time - this.lastFrameAt
     this.lastFrameAt = time
+    if (time - this.firstFrameAt < WARM_UP_SECONDS) return
     if (elapsed > 0.25) return // Tab switch or similar: not a real frame time.
     this.sampledTime += elapsed
     this.sampledFrames++
@@ -231,10 +249,31 @@ export class KeyboardScene {
     const average = this.sampledTime / this.sampledFrames
     this.sampledTime = 0
     this.sampledFrames = 0
-    if (average > SLOW_FRAME_SECONDS && this.pixelRatio > MIN_PIXEL_RATIO) {
-      this.pixelRatio = Math.max(MIN_PIXEL_RATIO, this.pixelRatio - 0.5)
-      this.renderer.setPixelRatio(this.pixelRatio)
+    const floor = Math.min(MIN_PIXEL_RATIO, this.pixelRatioCeiling)
+
+    const justRaised = this.justRaised
+    this.justRaised = false
+
+    if (average > SLOW_FRAME_SECONDS) {
+      this.fastSamples = 0
+      if (this.pixelRatio <= floor) return
+      const lower = Math.max(floor, this.pixelRatio - PIXEL_RATIO_STEP)
+      // Slow again right after stepping up: that resolution is out of reach for good.
+      if (justRaised) this.pixelRatioCeiling = lower
+      this.setPixelRatio(lower)
+    } else if (average < FAST_FRAME_SECONDS && this.pixelRatio < this.pixelRatioCeiling) {
+      if (++this.fastSamples < FAST_SAMPLES_TO_RECOVER) return
+      this.fastSamples = 0
+      this.justRaised = true
+      this.setPixelRatio(Math.min(this.pixelRatioCeiling, this.pixelRatio + PIXEL_RATIO_STEP))
+    } else {
+      this.fastSamples = 0
     }
+  }
+
+  private setPixelRatio(ratio: number): void {
+    this.pixelRatio = ratio
+    this.renderer.setPixelRatio(ratio)
   }
 
   update(frame: SceneFrame): void {
