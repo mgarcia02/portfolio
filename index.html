@@ -2,16 +2,459 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio profesional de Mario García, desarrollador Full Stack">
-    <meta name="author" content="Mario García">
-    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon-mg-light.svg" media="(prefers-color-scheme: light)" />
-    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon-mg-dark.svg" media="(prefers-color-scheme: dark)" />
-    <title>Mario García · Web Developer</title>
-    <script type="module" crossorigin src="/portfolio/assets/index-t5nC5B54.js"></script>
-    <link rel="stylesheet" crossorigin href="/portfolio/assets/index-D6ub7MGY.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Mario García, desarrollador Full Stack enfocado en aplicaciones potenciadas por IA."
+    />
+    <meta name="author" content="Mario García" />
+    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/portfolio/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/portfolio/apple-touch-icon.png" />
+    <meta name="theme-color" content="#f0f1fa" />
+    <link rel="canonical" href="https://mgarcia02.github.io/portfolio/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:url" content="https://mgarcia02.github.io/portfolio/" />
+    <meta property="og:title" content="Mario García · Full Stack Developer" />
+    <meta
+      property="og:description"
+      content="Desarrollador Full Stack enfocado en crear aplicaciones potenciadas por IA."
+    />
+    <meta property="og:image" content="https://mgarcia02.github.io/portfolio/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Mario García · Full Stack Developer</title>
+    <script>
+      document.documentElement.classList.add('js')
+    </script>
+    <link
+      rel="preload"
+      href="/portfolio/assets/dm-sans-latin-opsz-normal-Bf69Tn_J.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script type="module" crossorigin src="/portfolio/assets/index-74G3znC-.js"></script>
+    <link rel="stylesheet" crossorigin href="/portfolio/assets/index-Br48vOZX.css">
   </head>
   <body>
-    <div id="root"></div>
+    <!-- Loading screen -->
+    <div class="loader" id="loader" aria-hidden="true">
+      <div class="ld-row cap"><span>Mario García</span><span>Iniciando portfolio</span></div>
+      <div>
+        <div class="ld-num" id="ldNum">000</div>
+        <div class="ld-bar" id="ldBar"></div>
+        <div class="ld-row cap">
+          <span class="ld-msg" id="ldMsg">Leyendo el briefing del cliente…</span><span>v3.0</span>
+        </div>
+      </div>
+    </div>
+
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="cursor" id="cursor" aria-hidden="true">
+      <div class="cur-ring" id="curRing"><span>Pulsa</span></div>
+      <div class="cur-dot" id="curDot"></div>
+    </div>
+
+    <div class="hud" id="hud">
+      <span class="hud-pct" id="scrollPct" aria-hidden="true">000%</span>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuCard">
+        Menú<span class="menu-ico"></span>
+      </button>
+      <nav class="menu-card" id="menuCard" aria-label="Secciones">
+        <a href="#inicio" class="on">Inicio</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#stack">Stack</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+
+    <header class="top wrap">
+      <a class="logo" href="#inicio">MG.</a>
+      <p class="top-mid">Aplicaciones potenciadas por IA</p>
+      <a class="btn" href="#contacto" data-magnetic
+        ><span class="tick"></span
+        ><span class="btn-label"><span>Contactar</span><span aria-hidden="true">Contactar</span></span></a
+      >
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section id="inicio" class="hero wrap">
+        <p class="eyebrow"><b aria-hidden="true">+</b> Full Stack Developer</p>
+        <div class="hero-mid">
+          <h1 class="hero-title" id="heroTitle">
+            <span class="ln l1">Mario</span><span class="ln l2">García.</span>
+          </h1>
+          <div class="slot hero-slot" id="slotHero"></div>
+        </div>
+        <div class="hero-foot">
+          <p class="hero-blurb">
+            Desarrollador Full Stack enfocado en crear aplicaciones potenciadas por IA. Construyo sistemas
+            claros, eficientes y preparados para escalar.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn" href="#proyectos" data-magnetic
+              ><span class="tick"></span
+              ><span class="btn-label"
+                ><span>Ver proyectos</span><span aria-hidden="true">Ver proyectos</span></span
+              ></a
+            >
+            <a
+              class="link"
+              href="https://www.linkedin.com/in/mario-garc%C3%ADa-rela%C3%B1o-b66878284/"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn ↗</a
+            >
+          </div>
+        </div>
+        <p class="scroll-ind" id="scrollInd">
+          <b aria-hidden="true">+</b> Desliza para explorar <b aria-hidden="true">+</b>
+        </p>
+      </section>
+
+      <!-- About (pinned) -->
+      <section id="sobre-mi" class="pin pin-about">
+        <div class="pin-inner wrap about-grid">
+          <div class="about-text">
+            <p class="eyebrow"><b aria-hidden="true">+</b> 01 / Sobre mí</p>
+            <h2 class="h-lg reveal">
+              <span class="ln">Donde el</span><span class="ln">código piensa.</span>
+            </h2>
+            <div class="lit" id="lit">
+              <p>
+                Soy desarrollador Full Stack con background en IA, apasionado por construir aplicaciones donde
+                la inteligencia artificial deja de ser un buzzword y se convierte en valor real para el
+                usuario.
+              </p>
+              <p>
+                Mi stack principal gira en torno a React + TypeScript en el frontend y Node.js + Python en el
+                backend, con integración de modelos de lenguaje grandes en aplicaciones reales.
+              </p>
+              <p>
+                Me obsesiona la arquitectura limpia: código modular, patrones bien aplicados y proyectos que
+                escalan sin deuda técnica.
+              </p>
+              <p>
+                Además, soy socio de Relpa, un estudio digital y consultora tecnológica donde me encargo de
+                los proyectos de principio a fin.
+              </p>
+            </div>
+            <div class="socials">
+              <a class="link" href="https://github.com/mgarcia02" target="_blank" rel="noopener">GitHub ↗</a>
+              <a
+                class="link"
+                href="https://www.linkedin.com/in/mario-garc%C3%ADa-rela%C3%B1o-b66878284/"
+                target="_blank"
+                rel="noopener"
+                >LinkedIn ↗</a
+              >
+              <a class="link" href="#contacto">Email</a>
+            </div>
+          </div>
+          <div class="slot about-slot" id="slotAbout"></div>
+        </div>
+      </section>
+
+      <!-- Stack (pinned) -->
+      <section id="stack" class="pin pin-skills">
+        <div class="pin-inner wrap">
+          <div class="sec-head">
+            <p class="eyebrow"><b aria-hidden="true">+</b> 02 / Stack <b aria-hidden="true">+</b></p>
+            <h2 class="h-lg reveal">
+              <span class="ln">Las teclas que</span><span class="ln">más pulso.</span>
+            </h2>
+          </div>
+          <div class="slot grid-slot" id="slotGrid"></div>
+          <p class="readout" aria-live="polite"><span id="readout">Pasa el cursor por una tecla</span></p>
+          <div class="cats" id="cats">
+            <div class="cat on" data-cat="FE">
+              <button class="cat-head" type="button" aria-pressed="true">
+                <span class="cat-fill"></span><span class="cat-sw" style="--sw: var(--paper)"></span
+                ><span class="cat-name">Frontend</span><span class="cat-n" aria-hidden="true">06</span>
+              </button>
+              <ul class="tags cat-chips">
+                <li data-key="1">React</li>
+                <li data-key="2">TypeScript</li>
+                <li>TailwindCSS</li>
+                <li>Vite</li>
+                <li data-key="3">Vue</li>
+                <li>HTML/CSS</li>
+              </ul>
+            </div>
+            <div class="cat" data-cat="BE">
+              <button class="cat-head" type="button" aria-pressed="false">
+                <span class="cat-fill"></span><span class="cat-sw" style="--sw: var(--graphite)"></span
+                ><span class="cat-name">Backend</span><span class="cat-n" aria-hidden="true">06</span>
+              </button>
+              <ul class="tags cat-chips">
+                <li>FastAPI</li>
+                <li data-key="5">Python</li>
+                <li data-key="6">MySQL</li>
+                <li data-key="4">Node.js</li>
+                <li data-key="7">MongoDB</li>
+                <li>Spring Boot</li>
+              </ul>
+            </div>
+            <div class="cat" data-cat="AI">
+              <button class="cat-head" type="button" aria-pressed="false">
+                <span class="cat-fill"></span><span class="cat-sw" style="--sw: var(--lime)"></span
+                ><span class="cat-name">AI / LLMs</span><span class="cat-n" aria-hidden="true">04</span>
+              </button>
+              <ul class="tags cat-chips">
+                <li data-key="8">Prompt Eng.</li>
+                <li data-key="9">Agentes IA</li>
+                <li>RAG</li>
+                <li>NLP</li>
+              </ul>
+            </div>
+            <div class="cat" data-cat="OPS">
+              <button class="cat-head" type="button" aria-pressed="false">
+                <span class="cat-fill"></span><span class="cat-sw" style="--sw: var(--periwinkle)"></span
+                ><span class="cat-name">Herramientas</span><span class="cat-n" aria-hidden="true">04</span>
+              </button>
+              <ul class="tags cat-chips">
+                <li data-key="10">Git &amp; GitHub</li>
+                <li data-key="11">Docker</li>
+                <li>WSL</li>
+                <li>VS Code</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects (pinned, one stretch per project) -->
+      <section id="proyectos" class="pin pin-projects">
+        <div class="pin-inner wrap">
+          <div class="sec-top">
+            <div>
+              <p class="eyebrow"><b aria-hidden="true">+</b> 03 / Proyectos</p>
+              <h2 class="h-lg reveal"><span class="ln">Lo que he construido.</span></h2>
+            </div>
+            <div class="counter" aria-hidden="true">
+              <span class="roll"
+                ><span class="roll-col" id="roll"
+                  ><span>01</span><span>02</span><span>03</span><span>04</span></span
+                ></span
+              ><span class="of">/04</span>
+            </div>
+          </div>
+          <div class="proj-stage">
+            <div class="slot proj-slot" id="slotProj"></div>
+            <article class="proj is-active">
+              <div class="p-head">
+                <p class="eyebrow" data-stagger>01 · LLM · Full Stack</p>
+                <h3 class="p-title" data-stagger>Sentiment Analysis Dashboard</h3>
+              </div>
+              <div class="p-body card">
+                <p class="p-desc" data-stagger>
+                  Aplicación full-stack de análisis de sentimientos impulsada por Gemini. Procesa texto en
+                  tiempo real para detectar emociones, extraer palabras clave y generar métricas visuales
+                  mediante una arquitectura moderna basada en FastAPI y React.
+                </p>
+                <ul class="p-list" data-stagger>
+                  <li>Análisis estructurado mediante Gemini con respuesta validada por Pydantic</li>
+                  <li>Detección de emociones, palabras clave y nivel de confianza</li>
+                  <li>Dashboard interactivo con gráficas Radar, Gauge y evolución histórica</li>
+                  <li>Arquitectura desacoplada (router → service → client) preparada para escalar</li>
+                </ul>
+                <ul class="tags" data-stagger>
+                  <li>React</li>
+                  <li>TypeScript</li>
+                  <li>FastAPI</li>
+                  <li>Gemini API</li>
+                  <li>Recharts</li>
+                  <li>Pydantic</li>
+                </ul>
+                <a
+                  class="link"
+                  href="https://github.com/mgarcia02/sentimentai"
+                  target="_blank"
+                  rel="noopener"
+                  data-stagger
+                  >Código fuente ↗</a
+                >
+              </div>
+            </article>
+            <article class="proj">
+              <div class="p-head">
+                <p class="eyebrow" data-stagger>02 · Full Stack · REST API</p>
+                <h3 class="p-title" data-stagger>URL Shortener Service</h3>
+              </div>
+              <div class="p-body card">
+                <p class="p-desc" data-stagger>
+                  Servicio full-stack para generación y gestión de URLs cortas con redirección instantánea,
+                  validación de enlaces y arquitectura REST. Diseñado para practicar diseño de APIs,
+                  persistencia de datos y flujo completo cliente-servidor.
+                </p>
+                <ul class="p-list" data-stagger>
+                  <li>Generación automática de identificadores únicos para enlaces</li>
+                  <li>API REST con validación robusta de entradas y errores</li>
+                  <li>Persistencia de URLs y resolución eficiente de redirecciones</li>
+                  <li>Frontend ligero para creación y gestión de enlaces cortos</li>
+                </ul>
+                <ul class="tags" data-stagger>
+                  <li>React</li>
+                  <li>TypeScript</li>
+                  <li>Node.js</li>
+                  <li>Express</li>
+                  <li>MongoDB</li>
+                </ul>
+                <a
+                  class="link"
+                  href="https://github.com/mgarcia02/url-shortener"
+                  target="_blank"
+                  rel="noopener"
+                  data-stagger
+                  >Código fuente ↗</a
+                >
+              </div>
+            </article>
+            <article class="proj">
+              <div class="p-head">
+                <p class="eyebrow" data-stagger>03 · Real-Time · Authentication</p>
+                <h3 class="p-title" data-stagger>Chat en Tiempo Real</h3>
+              </div>
+              <div class="p-body card">
+                <p class="p-desc" data-stagger>
+                  Aplicación de mensajería en tiempo real basada en WebSockets que permite comunicación
+                  instantánea entre usuarios y sincronización bidireccional de eventos. Construida para
+                  explorar sistemas reactivos y conexiones persistentes.
+                </p>
+                <ul class="p-list" data-stagger>
+                  <li>Comunicación bidireccional en tiempo real mediante Socket.IO</li>
+                  <li>Autenticación y gestión de sesiones con JWT en cookies HTTP-only</li>
+                  <li>Actualización instantánea de mensajes sin recargar la página</li>
+                  <li>Arquitectura cliente-servidor orientada a eventos</li>
+                </ul>
+                <ul class="tags" data-stagger>
+                  <li>React</li>
+                  <li>TypeScript</li>
+                  <li>Node.js</li>
+                  <li>Express</li>
+                  <li>Socket.IO</li>
+                </ul>
+                <a
+                  class="link"
+                  href="https://github.com/mgarcia02/chat-tiempo-real"
+                  target="_blank"
+                  rel="noopener"
+                  data-stagger
+                  >Código fuente ↗</a
+                >
+              </div>
+            </article>
+            <article class="proj">
+              <div class="p-head">
+                <p class="eyebrow" data-stagger>04 · Socio · Proyectos para clientes</p>
+                <h3 class="p-title" data-stagger>
+                  <img
+                    loading="lazy"
+                    decoding="async"
+                    class="p-logo"
+                    src="/portfolio/assets/relpa-logo-DfJAesjx.svg"
+                    alt="Relpa"
+                    width="2400"
+                    height="755"
+                  />
+                </h3>
+              </div>
+              <div class="p-body card">
+                <p class="p-desc" data-stagger>
+                  Soy socio de Relpa, un estudio digital y consultora tecnológica que ayuda a empresas a
+                  digitalizarse con páginas web, automatización de procesos y aplicaciones a medida. Somos dos
+                  socios y me encargo de los proyectos de principio a fin.
+                </p>
+                <ul class="p-list" data-stagger>
+                  <li>
+                    Trato directo con clientes: entender qué necesita su negocio y proponer la solución que
+                    encaja
+                  </li>
+                  <li>Alcance, precio y plazos por escrito, con el cliente aprobando cada fase</li>
+                  <li>Todo el flujo: propuesta, diseño, desarrollo, publicación y mantenimiento</li>
+                  <li>Revisión antes de publicar: funciones, móvil, textos, velocidad y seguridad</li>
+                </ul>
+                <ul class="tags" data-stagger>
+                  <li>Clientes reales</li>
+                  <li>Propuestas</li>
+                  <li>Full Stack</li>
+                  <li>Automatización</li>
+                  <li>Mantenimiento</li>
+                </ul>
+                <a class="link" href="https://relpa.es" target="_blank" rel="noopener" data-stagger
+                  >Visitar relpa.es ↗</a
+                >
+              </div>
+            </article>
+          </div>
+          <div class="proj-foot">
+            <div class="pbar" aria-hidden="true">
+              <i id="pbarFill"></i><span class="dot" style="left: 0%"></span
+              ><span class="dot" style="left: 33.333%"></span><span class="dot" style="left: 66.666%"></span
+              ><span class="dot" style="left: 100%"></span>
+            </div>
+            <a class="link" href="https://github.com/mgarcia02" target="_blank" rel="noopener"
+              >Ver todo en GitHub ↗</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Transition -->
+      <section class="marquee" aria-label="Tecnologías">
+        <div class="mq-track" id="mqTrack">
+          <span>React</span><em>+</em><span>TypeScript</span><em>+</em><span>FastAPI</span><em>+</em
+          ><span>Prompt Eng.</span><em>+</em><span>Node.js</span><em>+</em><span>Python</span><em>+</em
+          ><span>MongoDB</span><em>+</em><span>Docker</span><em>+</em>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contacto" class="contact wrap">
+        <div class="sec-head">
+          <p class="eyebrow"><b aria-hidden="true">+</b> 04 / Contacto <b aria-hidden="true">+</b></p>
+          <h2 class="reveal"><span class="ln">¿Construimos</span><span class="ln">algo juntos?</span></h2>
+        </div>
+        <div class="slot contact-slot" id="slotContact"></div>
+        <p class="typed" aria-hidden="true"><span id="typed">hola, mundo!</span><i class="caret"></i></p>
+        <div class="contact-body">
+          <p>
+            Busco incorporarme a un equipo donde seguir creciendo como desarrollador. Si tienes una
+            oportunidad o quieres hablar, escríbeme.
+          </p>
+          <div class="mailrow">
+            <span id="emailText">mariogrdg02@outlook.com</span
+            ><button class="copy" id="copyEmail" type="button">Copiar</button>
+          </div>
+          <div class="contact-ctas">
+            <a class="btn" href="mailto:mariogrdg02@outlook.com" data-magnetic
+              ><span class="tick"></span
+              ><span class="btn-label"
+                ><span>Escríbeme</span><span aria-hidden="true">Escríbeme</span></span
+              ></a
+            >
+            <a
+              class="link"
+              href="https://www.linkedin.com/in/mario-garc%C3%ADa-rela%C3%B1o-b66878284/"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn ↗</a
+            >
+            <a class="link" href="https://github.com/mgarcia02" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+        <footer class="foot">
+          <p class="foot-id"><span>Mario García</span> <span>Full Stack Developer</span></p>
+          <a class="link" href="#inicio">Volver arriba ↑</a>
+        </footer>
+      </section>
+    </main>
   </body>
 </html>
