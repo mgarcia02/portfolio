@@ -189,14 +189,18 @@
   }
   .pinned .proj-stage {
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(120px, 26vh) auto;
+    grid-template-rows: minmax(120px, 1fr) auto;
     gap: 12px;
   }
   .pinned .proj-slot {
     grid-area: 1/1/2/2;
+    height: 100%;
+    max-height: min(44vh, 400px);
+    align-self: center;
   }
   .pinned .proj {
     grid-area: 2/1/3/2;
+    align-self: end;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -269,7 +273,7 @@
     font-size: 44px;
   }
   .pinned .proj-stage {
-    grid-template-rows: minmax(72px, 13vh) auto;
+    grid-template-rows: minmax(72px, 1fr) auto;
     gap: 8px;
   }
   .pinned .proj {

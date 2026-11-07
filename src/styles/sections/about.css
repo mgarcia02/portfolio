@@ -35,8 +35,17 @@
     gap: 12px;
     align-items: start;
   }
+  /* The key takes whatever height the copy leaves, so the copy sits at the bottom. */
   .pinned .about-grid {
     padding-top: 72px;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+  .pinned .about-slot {
+    height: 100%;
+    min-height: 30vh;
+    /* Tablets have room to spare: keep the key from crowding the heading. */
+    max-height: min(44vh, 400px);
+    align-self: center;
   }
   .about-slot {
     order: -1;
@@ -58,6 +67,9 @@
   }
   .about-slot {
     height: 13vh;
+  }
+  .pinned .about-slot {
+    min-height: 16vh;
   }
   .about-text {
     gap: 10px;
