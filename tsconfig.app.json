@@ -14,7 +14,6 @@
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "noEmit": true,
-    "jsx": "react-jsx",
 
     /* Linting */
     "strict": true,
@@ -22,13 +21,7 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-
-    /* Alias config */
-    "baseUrl": "src",
-    "paths": {
-      "@/*": ["*"]
-    }
+    "noUncheckedSideEffectImports": true
   },
   "include": ["src"]
 }

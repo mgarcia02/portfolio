@@ -1,0 +1,68 @@
+/* Custom cursor (fine pointers only). */
+.cursor {
+  display: none;
+}
+.has-cursor .cursor {
+  display: block;
+}
+.has-cursor,
+.has-cursor a,
+.has-cursor button {
+  cursor: none;
+}
+.cur-dot,
+.cur-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 110;
+  pointer-events: none;
+  border-radius: 50%;
+}
+.cur-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--ink);
+}
+.cur-ring {
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
+  border: 1px solid var(--ink);
+  display: grid;
+  place-items: center;
+  transition:
+    width 0.45s var(--ease),
+    height 0.45s var(--ease),
+    margin 0.45s var(--ease),
+    background-color 0.3s,
+    border-color 0.3s;
+}
+.cur-ring span {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--paper);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.cursor.is-link .cur-ring {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  border-color: var(--accent);
+}
+.cursor.is-key .cur-ring {
+  width: 76px;
+  height: 76px;
+  margin: -38px 0 0 -38px;
+  background: var(--graphite);
+  border-color: var(--graphite);
+}
+.cursor.is-key .cur-ring span {
+  opacity: 1;
+}
+.cursor.is-key .cur-dot {
+  opacity: 0;
+}

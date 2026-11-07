@@ -1,0 +1,54 @@
+/* Loading screen. */
+.loader {
+  display: none;
+}
+.js .loader {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--lavender);
+  flex-direction: column;
+  justify-content: space-between;
+  padding: max(24px, env(safe-area-inset-top, 0px)) max(var(--gutter), env(safe-area-inset-right, 0px))
+    max(24px, env(safe-area-inset-bottom, 0px)) max(var(--gutter), env(safe-area-inset-left, 0px));
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1.1s cubic-bezier(0.76, 0, 0.24, 1);
+  animation: ldfail 0s 9s forwards;
+}
+.loader.out {
+  clip-path: inset(0 0 100% 0);
+}
+@keyframes ldfail {
+  to {
+    visibility: hidden;
+  }
+}
+.ld-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.ld-num {
+  font-size: clamp(96px, 18vw, 144px);
+  line-height: 0.9;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.ld-bar {
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  gap: 4px;
+  margin-block: 16px 12px;
+}
+.ld-bar i {
+  height: 6px;
+  border-radius: var(--r-sm);
+  background: var(--haze);
+}
+.ld-bar i.on {
+  background: var(--ink);
+}
+.ld-msg {
+  min-height: 1.5em;
+}

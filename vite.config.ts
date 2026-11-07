@@ -1,14 +1,15 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
-import svgr from 'vite-plugin-svgr'
 
 export default defineConfig({
-  plugins: [react(), svgr()],
   base: '/portfolio/',
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
+  build: {
+    sourcemap: true,
+    // three.js is a single large dependency; keep it in its own long-lived chunk.
+    chunkSizeWarningLimit: 700,
+    rollupOptions: {
+      output: {
+        manualChunks: { three: ['three'] },
+      },
     },
   },
 })

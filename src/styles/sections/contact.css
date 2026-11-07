@@ -1,0 +1,140 @@
+/* Contact and footer. */
+.contact {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2.4vh, 24px);
+  padding-top: clamp(64px, 10vh, 88px);
+  padding-bottom: max(24px, env(safe-area-inset-bottom, 0px));
+}
+.contact > * {
+  position: relative;
+  z-index: 2;
+}
+.contact .sec-head h2 {
+  font-size: clamp(44px, min(7.5vw, 10vh), 108px);
+  line-height: 0.9;
+  font-weight: 400;
+}
+.contact-slot {
+  flex: 1;
+  min-height: clamp(110px, 18vh, 200px);
+  max-height: 300px;
+  width: min(100%, 820px);
+  margin-inline: auto;
+}
+.typed {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  min-height: 1.4em;
+}
+.typed .caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  vertical-align: -0.12em;
+  margin-left: 2px;
+  background: var(--accent);
+  animation: blink 1s steps(2) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.contact-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(12px, 2.2vh, 24px);
+  text-align: center;
+}
+.contact-body > p {
+  max-width: 46ch;
+  font-size: clamp(16px, 2.2vh, 18px);
+}
+.mailrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 6px 6px 18px;
+  background: var(--paper);
+  border: 1px solid var(--haze);
+  border-radius: var(--r-input);
+  box-shadow: var(--shadow);
+  max-width: 100%;
+}
+.mailrow span {
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  user-select: all;
+}
+.copy {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 1px solid var(--haze);
+  background: var(--lavender);
+  color: var(--ink);
+  border-radius: var(--r-btn);
+  padding: 9px 14px;
+  flex: none;
+  transition: opacity 0.3s;
+}
+.copy:hover {
+  opacity: 0.7;
+}
+.contact-ctas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+/* Desktop: "Mario García + Full Stack Developer". Mobile: one line each, both led by a "+". */
+.foot-id {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.4em;
+}
+.foot-id span::before {
+  color: var(--accent);
+  margin-right: 0.4em;
+}
+.foot-id span:last-child::before {
+  content: '+';
+}
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--haze);
+  padding-top: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+@media (max-width: 820px) {
+  .contact-slot {
+    max-height: 240px;
+  }
+  .contact-body > p {
+    font-size: 16px;
+  }
+  .foot-id {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .foot-id span::before {
+    content: '+';
+  }
+}
