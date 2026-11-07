@@ -3,12 +3,12 @@ import { $, $$ } from '../lib/dom'
 import { clamp } from '../lib/math'
 
 const MESSAGES = [
-  'Inyectando PBT en el molde…',
-  'Grabando leyendas a láser…',
-  'Lubricando estabilizadores…',
-  'Calibrando switches lineales · 45 g…',
-  'Flasheando firmware…',
-  'Montando las 12 teclas en la placa…',
+  'Leyendo el briefing del cliente…',
+  'Instalando dependencias…',
+  'Compilando TypeScript…',
+  'Afinando los prompts…',
+  'Pasando los tests…',
+  'Desplegando a producción…',
 ]
 const SEGMENTS = 30
 const MIN_DURATION_MS = prefersReducedMotion ? 500 : 1600
