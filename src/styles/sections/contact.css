@@ -98,13 +98,23 @@
   gap: 24px;
   flex-wrap: wrap;
 }
-.foot b {
-  font-weight: 500;
+/* Desktop: "Mario García + Full Stack Developer". Mobile: one line each, both led by a "+". */
+.foot-id {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.4em;
+}
+.foot-id span::before {
   color: var(--indigo);
+  margin-right: 0.4em;
+}
+.foot-id span:last-child::before {
+  content: '+';
 }
 .foot {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   gap: 16px;
   flex-wrap: wrap;
   border-top: 1px solid var(--haze);
@@ -119,5 +129,12 @@
   }
   .contact-body > p {
     font-size: 16px;
+  }
+  .foot-id {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .foot-id span::before {
+    content: '+';
   }
 }

@@ -29,7 +29,7 @@ interface Key {
   group: THREE.Group
   body: THREE.Mesh
   bodyMaterial: THREE.MeshStandardMaterial
-  legendMaterial: THREE.MeshStandardMaterial
+  legendMaterial: THREE.MeshStandardMaterial | THREE.MeshBasicMaterial
   stackLegend: THREE.Texture
   messageLegend: THREE.Texture
   currentLegend: THREE.Texture
@@ -133,24 +133,32 @@ export class KeyboardScene {
       const stackLegend = upload(
         index === SIGNATURE_KEY ? legends.signature(definition) : legends.skill(definition),
       )
-      const bodyMaterial = new THREE.MeshStandardMaterial({
+      // The signature key must read as the UI accent: tone mapping would shift its blue towards violet,
+      // and strong reflections would wash it out. Its albedo in KEY_BODY_COLORS is calibrated for this.
+      const isSignature = definition.color === 'indigo'
+      const bodyMaterial = new (isSignature ? THREE.MeshPhysicalMaterial : THREE.MeshStandardMaterial)({
         color: linearColor(KEY_BODY_COLORS[definition.color]),
-        roughness: definition.color === 'indigo' ? 0.36 : 0.52,
+        roughness: isSignature ? 0.5 : 0.52,
+        toneMapped: !isSignature,
         metalness: 0,
-        envMapIntensity: 0.95,
+        envMapIntensity: isSignature ? 0.45 : 0.95,
         emissive: linearColor('#3a4bff'),
         emissiveIntensity: 0,
       })
-      const legendMaterial = new THREE.MeshStandardMaterial({
+      // Physical material only to lower specular reflectance, which would whiten the accent colour.
+      if (bodyMaterial instanceof THREE.MeshPhysicalMaterial) bodyMaterial.reflectivity = 0.15
+      const decal = {
         map: stackLegend,
         transparent: true,
-        roughness: 0.3,
-        metalness: 0,
         depthWrite: false,
         polygonOffset: true,
         polygonOffsetFactor: -2,
-        envMapIntensity: 0.6,
-      })
+      }
+      // The signature key's legends are printed flat, unlit, so the Relpa monogram matches the logo
+      // in the page exactly; the rest are lit like laser engraving.
+      const legendMaterial = isSignature
+        ? new THREE.MeshBasicMaterial({ ...decal, toneMapped: false })
+        : new THREE.MeshStandardMaterial({ ...decal, roughness: 0.3, metalness: 0, envMapIntensity: 0.6 })
       const body = new THREE.Mesh(bodyGeometry, bodyMaterial)
       body.userData.key = index
       const legend = new THREE.Mesh(legendGeometry, legendMaterial)
