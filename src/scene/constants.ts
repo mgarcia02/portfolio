@@ -5,7 +5,7 @@ export const CAMERA = { fov: 30, z: 12 } as const
 /** Albedo of each key. */
 export const KEY_BODY_COLORS: Record<KeyColor, string> = {
   // Calibrated so the lit top face renders as the UI accent (--accent); see the signature material.
-  accent: '#397fb7',
+  accent: '#c0664e',
   paper: '#ffffff',
   graphite: '#2b2e3a',
   lime: '#c1ff00',
