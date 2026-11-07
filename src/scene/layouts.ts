@@ -23,8 +23,8 @@ const GRID_COLUMNS = 4
 const GRID_COLUMNS_COMPACT = 3
 
 const fitToSlot = (slot: Slot, fill = 0.78): number => Math.min(slot.width, slot.height) * fill
-/** On narrow screens the key sits alone above the copy, so it can fill more of its slot. */
-const soloFill = (): number => (isCompactViewport() ? 0.92 : 0.74)
+/** Share of its slot the key fills when it stands alone (About, Projects). */
+const SOLO_FILL = 0.74
 
 const hero: Layout = (key, { slot }) => {
   const isSignature = key === SIGNATURE_KEY
@@ -49,7 +49,7 @@ const about: Layout = (key, { slot, progress }) => {
     -0.3 + progress * 0.12,
     -0.78 + progress * 0.42,
     -0.08,
-    isSignature ? fitToSlot(slot, soloFill()) : HIDDEN_SCALE,
+    isSignature ? fitToSlot(slot, SOLO_FILL) : HIDDEN_SCALE,
   ]
 }
 
@@ -95,7 +95,7 @@ const projects: Layout = (key, { slot, progress }) => {
     -0.18,
     projectTurn(progress).rotation,
     0.06,
-    isSignature ? fitToSlot(slot, soloFill() - 0.02) : HIDDEN_SCALE,
+    isSignature ? fitToSlot(slot, SOLO_FILL - 0.02) : HIDDEN_SCALE,
   ]
 }
 
