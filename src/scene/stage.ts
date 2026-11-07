@@ -47,7 +47,7 @@ export function lightScene(scene: THREE.Scene, renderer: THREE.WebGLRenderer): T
   key.position.set(-4, 7, 9)
   const rim = new THREE.DirectionalLight(linearColor('#9aa4ff'), 2.4)
   rim.position.set(7, 3, -7)
-  const flash = new THREE.PointLight(linearColor('#c7ceff'), 0, 7, 2)
+  const flash = new THREE.PointLight(linearColor('#cfe6ff'), 0, 7, 2)
 
   scene.add(key, rim, flash, new THREE.HemisphereLight(linearColor('#ffffff'), linearColor('#2b2e3a'), 0.35))
   return flash

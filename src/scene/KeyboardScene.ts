@@ -133,15 +133,19 @@ export class KeyboardScene {
       const stackLegend = upload(
         index === SIGNATURE_KEY ? legends.signature(definition) : legends.skill(definition),
       )
+      // The signature key must read as the UI accent: tone mapping and strong reflections would wash
+      // its colour out, so it skips tone mapping and reflects less. Its albedo is calibrated for this.
       const isSignature = definition.color === 'accent'
-      const bodyMaterial = new THREE.MeshStandardMaterial({
+      const bodyMaterial = new (isSignature ? THREE.MeshPhysicalMaterial : THREE.MeshStandardMaterial)({
         color: linearColor(KEY_BODY_COLORS[definition.color]),
-        roughness: isSignature ? 0.36 : 0.52,
+        roughness: isSignature ? 0.5 : 0.52,
+        toneMapped: !isSignature,
         metalness: 0,
-        envMapIntensity: 0.95,
-        emissive: linearColor('#8f7dff'),
+        envMapIntensity: isSignature ? 0.45 : 0.95,
+        emissive: linearColor('#9ccbff'),
         emissiveIntensity: 0,
       })
+      if (bodyMaterial instanceof THREE.MeshPhysicalMaterial) bodyMaterial.reflectivity = 0.15
       const decal = {
         map: stackLegend,
         transparent: true,
